@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>تأكيد الحجز</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      padding: 20px;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+      "
+    >
+      <h2 style="color: #2b2b2b">
+        مرحبًا {{ user.first_name|default:user.username }} 👋
+      </h2>
+      <p style="font-size: 16px">تم تأكيد حجزك بنجاح 🎉</p>
+      <table style="width: 100%; margin-top: 20px; border-collapse: collapse">
+        <tr>
+          <th align="right">الخدمة:</th>
+          <td>{{ booking.service }}</td>
+        </tr>
+        <tr>
+          <th align="right">التاريخ:</th>
+          <td>{{ booking.date }}</td>
+        </tr>
+        <tr>
+          <th align="right">الساعة:</th>
+          <td>{{ booking.time }}</td>
+        </tr>
+      </table>
+      <p style="margin-top: 30px">نتطلع لخدمتك قريبًا! 💈</p>
+      <p style="color: #888">Barbershop</p>
+    </div>
+  </body>
+</html>

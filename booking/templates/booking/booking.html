@@ -1,0 +1,7 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<h2 class="mb-4">احجز موعدك</h2>
+<form method="post" class="form-box">{% csrf_token %}{{ form.as_p }}
+  <button class="btn btn-dark">احجز الآن</button>
+</form>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}محل الحلاقة{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap RTL -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Font: Cairo -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <style>
+      body {
+        font-family: "Cairo", sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      .nav-link {
+        font-size: 1rem;
+      }
+      .nav-link.active,
+      .nav-link:hover {
+        color: #ffc107 !important;
+      }
+      .container {
+        max-width: 960px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="/">💈 محل الحلاقة</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/' %}active{% endif %}"
+                href="/"
+                >الرئيسية</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/services/' %}active{% endif %}"
+                href="/services/"
+                >الخدمات</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/about/' %}active{% endif %}"
+                href="/about/"
+                >من نحن</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/contact/' %}active{% endif %}"
+                href="/contact/"
+                >تواصل معنا</a
+              >
+            </li>
+
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/book/' %}active{% endif %}"
+                href="/book/"
+                >احجز</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}"
+                href="/dashboard/"
+                >لوحة التحكم</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout/">خروج</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/signup/' %}active{% endif %}"
+                href="/signup/"
+                >تسجيل</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link {% if request.path == '/login/' %}active{% endif %}"
+                href="/login/"
+                >دخول</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="container py-5">{% block content %}{% endblock %}</main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
