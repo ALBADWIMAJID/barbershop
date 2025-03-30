@@ -1,7 +1,60 @@
-{% extends 'booking/base.html' %}
-{% block content %}
-<h2 class="mb-4">تواصل معنا</h2>
-<p>📞 الهاتف: 0500000000</p>
-<p>📍 العنوان: الرياض - شارع الحلاقة</p>
-<p>📧 البريد الإلكتروني: barber@example.com</p>
+{% extends 'booking/base.html' %} {% block content %}
+<style>
+  .contact-container {
+    max-width: 700px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    direction: rtl;
+  }
+
+  .contact-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #198754;
+  }
+
+  .contact-info {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  .contact-info span {
+    font-weight: bold;
+    display: inline-block;
+    min-width: 100px;
+  }
+
+  .address {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #333;
+  }
+</style>
+
+<div class="contact-container">
+  <h2 class="mb-4">📞 تواصل معنا</h2>
+
+  <div class="contact-info">
+    <div class="contact-icon">📍</div>
+    <span>العنوان:</span> Пр-т Ленина, 22<br />
+    <div class="address">Пр-т Ленина, 22</div>
+    <!-- العنوان الروسي -->
+  </div>
+
+  <div class="contact-info">
+    <div class="contact-icon">📞</div>
+    <span>الهاتف:</span> 0555555555<br />
+    <div class="address">+7 (988) 498-05-01</div>
+    <!-- رقم روسي -->
+  </div>
+
+  <div class="contact-info">
+    <div class="contact-icon">✉️</div>
+    <span>البريد الإلكتروني:</span> contact@barbershop.com
+  </div>
+</div>
 {% endblock %}

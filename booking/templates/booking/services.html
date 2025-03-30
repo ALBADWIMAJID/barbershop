@@ -1,29 +1,106 @@
-{% extends 'booking/base.html' %}
-{% block content %}
-<h2 class="mb-4">خدماتنا</h2>
-<div class="row">
-  <div class="col-md-4 mb-3">
-    <div class="card service-card">
-      <div class="card-body">
-        <h5 class="card-title">💈 حلاقة كلاسيكية</h5>
-        <p class="card-text">50 ريال</p>
-      </div>
+{% extends 'booking/base.html' %} {% block content %}
+<style>
+  .service-card {
+    border: 1px solid #dee2e6;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    text-align: center;
+    height: 100%;
+  }
+
+  .service-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #198754;
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  .service-price {
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  .btn-book {
+    background-color: #198754;
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+  }
+
+  .btn-book:hover {
+    background-color: #157347;
+  }
+</style>
+
+<h2 class="mb-5 text-center">💈 خدماتنا المميزة</h2>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card service-card p-4">
+      <div class="service-icon">💈</div>
+      <div class="service-title">حلاقة كلاسيكية</div>
+      <div class="service-price">50 ريال</div>
+      <a href="/book/" class="btn-book">احجز الآن</a>
     </div>
   </div>
-  <div class="col-md-4 mb-3">
-    <div class="card service-card">
-      <div class="card-body">
-        <h5 class="card-title">🧖‍♂️ تنظيف بشرة</h5>
-        <p class="card-text">70 ريال</p>
-      </div>
+
+  <div class="col">
+    <div class="card service-card p-4">
+      <div class="service-icon">🧖‍♂️</div>
+      <div class="service-title">تنظيف بشرة</div>
+      <div class="service-price">70 ريال</div>
+      <a href="/book/" class="btn-book">احجز الآن</a>
     </div>
   </div>
-  <div class="col-md-4 mb-3">
-    <div class="card service-card">
-      <div class="card-body">
-        <h5 class="card-title">🎨 صبغة شعر</h5>
-        <p class="card-text">100 ريال</p>
-      </div>
+
+  <div class="col">
+    <div class="card service-card p-4">
+      <div class="service-icon">🎨</div>
+      <div class="service-title">صبغة شعر</div>
+      <div class="service-price">100 ريال</div>
+      <a href="/book/" class="btn-book">احجز الآن</a>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card service-card p-4">
+      <div class="service-icon">✂️</div>
+      <div class="service-title">حلاقة ذقن + تسريح</div>
+      <div class="service-price">60 ريال</div>
+      <a href="/book/" class="btn-book">احجز الآن</a>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card service-card p-4">
+      <div class="service-icon">💆‍♂️</div>
+      <div class="service-title">مساج الرأس</div>
+      <div class="service-price">40 ريال</div>
+      <a href="/book/" class="btn-book">احجز الآن</a>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card service-card p-4">
+      <div class="service-icon">🪒</div>
+      <div class="service-title">حلاقة أطفال</div>
+      <div class="service-price">35 ريال</div>
+      <a href="/book/" class="btn-book">احجز الآن</a>
     </div>
   </div>
 </div>
