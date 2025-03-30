@@ -1,7 +1,90 @@
-{% extends 'booking/base.html' %}
-{% block content %}
-<h2 class="mb-4">احجز موعدك</h2>
-<form method="post" class="form-box">{% csrf_token %}{{ form.as_p }}
-  <button class="btn btn-dark">احجز الآن</button>
-</form>
+{% extends "booking/base.html" %} {% block content %}
+<style>
+  .booking-container {
+    max-width: 500px;
+    margin: auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .booking-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+
+  .form-label {
+    font-weight: bold;
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .btn-book {
+    background-color: #198754;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    transition: background-color 0.3s;
+  }
+
+  .btn-book:hover {
+    background-color: #157347;
+  }
+</style>
+
+<div class="booking-container">
+  <h2 class="booking-title">احجز موعدك الآن</h2>
+
+  {% if success %}
+  <div class="alert alert-success text-center">تم الحجز بنجاح! ✅</div>
+  {% endif %} {% if form.errors %}
+  <div class="alert alert-danger">
+    <ul class="mb-0">
+      {% for field in form %} {% for error in field.errors %}
+      <li>{{ error }}</li>
+      {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <form method="POST" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">الخدمة</label>
+      {{ form.service }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">التاريخ</label>
+      {{ form.date }}
+    </div>
+    <div class="mb-3">
+      <label class="form-label">الوقت</label>
+      {{ form.time }}
+    </div>
+    <button type="submit" class="btn-book">تأكيد الحجز</button>
+  </form>
+</div>
+
+<script>
+  // نضيف تنسيق Bootstrap لكل الحقول ديناميكيًا إن لم يُضاف في الفورم نفسه
+  document.querySelectorAll("input, select").forEach((input) => {
+    input.classList.add("form-control");
+  });
+</script>
 {% endblock %}

@@ -1,22 +1,82 @@
 {% extends "booking/base.html" %} {% block content %}
-<div class="container mt-5">
-  <h2 class="mb-4">تسجيل الدخول</h2>
+<style>
+  .login-container {
+    max-width: 500px;
+    margin: auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .login-title {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2c3e50;
+  }
+
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 1rem;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+
+  .btn-login {
+    background-color: #0d6efd;
+    color: white;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    width: 100%;
+    border: none;
+    transition: background-color 0.3s;
+  }
+
+  .btn-login:hover {
+    background-color: #0b5ed7;
+  }
+
+  .text-danger {
+    font-size: 0.9rem;
+    color: #dc3545;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .login-container {
+      padding: 20px;
+    }
+  }
+</style>
+
+<div class="login-container">
+  <h2 class="login-title">تسجيل الدخول</h2>
 
   {% if messages %} {% for message in messages %}
-  <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+  <div class="alert alert-{{ message.tags }}">{{ message }}</div>
   {% endfor %} {% endif %}
 
   <form method="POST">
     {% csrf_token %}
-    <div class="mb-3">
+    <div class="form-group mb-3">
       <label for="username" class="form-label">اسم المستخدم</label>
       <input type="text" class="form-control" name="username" required />
     </div>
-    <div class="mb-3">
+    <div class="form-group mb-4">
       <label for="password" class="form-label">كلمة المرور</label>
       <input type="password" class="form-control" name="password" required />
     </div>
-    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+    <button type="submit" class="btn-login">دخول</button>
   </form>
 </div>
 {% endblock %}

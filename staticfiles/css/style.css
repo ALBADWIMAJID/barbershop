@@ -1,0 +1,97 @@
+/* الخط الأساسي */
+body {
+    font-family: "Cairo", sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* الروابط */
+a {
+    text-decoration: none;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* زر مخصص */
+.btn-custom {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+    background-color: #e0a800;
+    color: white;
+}
+
+/* الجداول */
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+/* رسائل التنبيه */
+.messages {
+    margin-top: 20px;
+}
+
+.messages .success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* الفوتر */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+/* نموذج الحجز وغيره */
+form input,
+form select,
+form textarea {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* تنسيق جدول الحجز */
+.table .btn {
+    padding: 4px 10px;
+    font-size: 0.9rem;
+}
+
+/* الهوامش للأزرار في لوحة التحكم */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* دعم الجوال */
+@media (max-width: 576px) {
+    .navbar-nav {
+        text-align: right;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}

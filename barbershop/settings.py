@@ -1,12 +1,14 @@
 from pathlib import Path
+import os
 
 # المسار الرئيسي
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # الأمان
 SECRET_KEY = 'django-insecure-barbershop-v2'
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False  # ← تم تعطيله لأنك تستخدم الاستضافة
+
+ALLOWED_HOSTS = ['.onrender.com', '127.0.0.1', 'localhost']
 
 # التطبيقات المثبتة
 INSTALLED_APPS = [
@@ -16,7 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'booking',  # التطبيق الخاص بك
+    'booking',
 ]
 
 # الوسيطات
@@ -30,19 +32,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# ملف التوجيه الرئيسي
 ROOT_URLCONF = 'barbershop.urls'
 
 # إعدادات القوالب
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],  # يمكنك إضافة مسارات مخصصة هنا
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # ← مهم جدًا لتفعيل request في القوالب
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -60,7 +61,7 @@ DATABASES = {
     }
 }
 
-# تحقق كلمة المرور (تم تعطيلها لتسهيل التطوير)
+# تحقق كلمة المرور (للتطوير فقط)
 AUTH_PASSWORD_VALIDATORS = []
 
 # اللغة والمنطقة الزمنية
@@ -70,23 +71,14 @@ USE_I18N = True
 USE_TZ = True
 
 # الملفات الثابتة (CSS/JS/Images)
-STATIC_URL = 'static/'
-
-# الحقل الافتراضي
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'booking/static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # إعادة التوجيه بعد تسجيل الدخول والخروج
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
-# ===============================
-# إعدادات البريد (Console فقط للتجريب)
-# ===============================
+# إعدادات البريد أثناء التطوير (تظهر في الطرفية فقط)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@barbershop.com'
-import os
-DEBUG = False
-ALLOWED_HOSTS = ['.onrender.com']
-
-# أضف هذا في الأسفل لتفعيل static
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

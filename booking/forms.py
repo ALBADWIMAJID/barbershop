@@ -1,8 +1,8 @@
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Booking
+from datetime import datetime, timedelta, time as time_obj
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField()
@@ -11,7 +11,45 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
 
+
 class BookingForm(forms.ModelForm):
+    TIME_CHOICES = [
+        (f"{hour:02d}:00", f"{hour}:00") for hour in range(12, 23)
+    ]
+
+    time = forms.ChoiceField(choices=TIME_CHOICES)
+
     class Meta:
         model = Booking
-        fields = ['date', 'time', 'service']
+        fields = ['service', 'date', 'time']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs.update({'class': 'form-control'})
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get('date')
+        time_str = cleaned_data.get('time')
+
+        if date and time_str:
+            try:
+                selected_time = datetime.strptime(time_str, "%H:%M").time()
+            except ValueError:
+                raise forms.ValidationError("الوقت غير صالح.")
+
+            selected_datetime = datetime.combine(date, selected_time)
+            now = datetime.now()
+
+            # ✅ لا يمكن الحجز في الماضي
+            if selected_datetime < now:
+                raise forms.ValidationError("لا يمكنك الحجز في وقت مضى.")
+
+            # ✅ منع الحجز بفارق أقل من ساعتين
+            existing_bookings = Booking.objects.filter(date=date)
+            for booking in existing_bookings:
+                existing_time = datetime.combine(booking.date, booking.time)
+                time_difference = abs((existing_time - selected_datetime).total_seconds()) / 3600
+                if time_difference < 2:
+                    raise forms.ValidationError("يوجد حجز آخر قريب من هذا الموعد. الرجاء اختيار وقت مختلف بفارق ساعتين.")

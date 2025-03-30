@@ -1,9 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 from .forms import SignUpForm, BookingForm
 from .models import Booking
@@ -12,18 +15,14 @@ from .models import Booking
 def home(request):
     return render(request, 'booking/home.html')
 
-
 def services(request):
     return render(request, 'booking/services.html')
-
 
 def about(request):
     return render(request, 'booking/about.html')
 
-
 def contact(request):
     return render(request, 'booking/contact.html')
-
 
 def signup(request):
     if request.method == 'POST':
@@ -35,7 +34,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'booking/signup.html', {'form': form})
-
 
 def login_view(request):
     if request.method == 'POST':
@@ -49,17 +47,14 @@ def login_view(request):
             messages.error(request, 'اسم المستخدم أو كلمة المرور غير صحيحة.')
     return render(request, 'booking/login.html')
 
-
 def logout_view(request):
     logout(request)
     return redirect('home')
-
 
 @login_required
 def dashboard(request):
     bookings = Booking.objects.filter(user=request.user)
     return render(request, 'booking/dashboard.html', {'bookings': bookings})
-
 
 @login_required
 def make_booking(request):
@@ -92,24 +87,42 @@ def make_booking(request):
     else:
         form = BookingForm()
     return render(request, 'booking/booking.html', {'form': form})
-from django.shortcuts import get_object_or_404
 
 @login_required
 def edit_booking(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    booking = get_object_or_404(Booking, id=booking_id)
+
+    if not request.user.is_superuser and booking.user != request.user:
+        messages.error(request, "لا يمكنك تعديل هذا الحجز.")
+        return redirect('dashboard')
+
     if request.method == 'POST':
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
-            messages.success(request, 'تم تعديل الحجز بنجاح.')
-            return redirect('dashboard')
+            messages.success(request, "تم تعديل الحجز.")
+            return redirect('admin_dashboard' if request.user.is_superuser else 'dashboard')
     else:
         form = BookingForm(instance=booking)
-    return render(request, 'booking/booking.html', {'form': form, 'edit_mode': True})
+
+    return render(request, 'booking/booking.html', {
+        'form': form,
+        'edit_mode': True
+    })
 
 @login_required
 def delete_booking(request, booking_id):
-    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    booking = get_object_or_404(Booking, id=booking_id)
+
+    if not request.user.is_superuser and booking.user != request.user:
+        messages.error(request, "لا يمكنك حذف هذا الحجز.")
+        return redirect('dashboard')
+
     booking.delete()
-    messages.success(request, 'تم حذف الحجز بنجاح.')
-    return redirect('dashboard')
+    messages.success(request, "تم حذف الحجز بنجاح.")
+    return redirect('admin_dashboard' if request.user.is_superuser else 'dashboard')
+
+@staff_member_required
+def admin_dashboard(request):
+    bookings = Booking.objects.all()
+    return render(request, 'booking/admin_dashboard.html', {'bookings': bookings})
