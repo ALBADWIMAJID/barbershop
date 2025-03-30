@@ -1,10 +1,9 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}محل الحلاقة{% endblock %}</title>
+    <title>{% block title %}Barbershop Legend{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap RTL -->
@@ -33,17 +32,30 @@
         margin: 0;
         padding: 0;
       }
+
       .navbar-brand {
         font-weight: bold;
         font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
       }
+
+      .navbar-brand img {
+        height: 35px;
+        width: auto;
+        border-radius: 5px;
+      }
+
       .nav-link {
         font-size: 1rem;
       }
+
       .nav-link.active,
       .nav-link:hover {
         color: #ffc107 !important;
       }
+
       .container {
         max-width: 960px;
       }
@@ -54,7 +66,11 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <a class="navbar-brand" href="/">💈 محل الحلاقة</a>
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'images/1ea8jp0rfl.jpg' %}" alt="" />
+
+          Barbershop Legend
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -110,17 +126,6 @@
                 >لوحة التحكم</a
               >
             </li>
-
-            {% if user.is_staff %}
-            <li class="nav-item">
-              <a
-                class="nav-link {% if request.path == '/admin-dashboard/' %}active{% endif %}"
-                href="/admin-dashboard/"
-                >لوحة المشرف</a
-              >
-            </li>
-            {% endif %}
-
             <li class="nav-item">
               <a class="nav-link" href="/logout/">خروج</a>
             </li>
