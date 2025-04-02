@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: barbershop-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn barbershop.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: barbershop.settings
+      - key: PYTHON_VERSION
+        value: 3.11
