@@ -1,33 +1,56 @@
-{% extends "booking/base.html" %} {% block content %}
+{% extends "booking/base.html" %} {% load static %} {% block content %}
+
+<!-- Flatpickr CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
+
 <style>
-  .booking-container {
-    max-width: 500px;
+  .booking-hero {
+    background: linear-gradient(to right, #198754cc, #157347cc),
+      url('{% static "images/6ka3s1lp5h.jpg" %}') center/cover;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+  }
+
+  .booking-hero h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .booking-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .booking-form-container {
+    max-width: 600px;
     margin: auto;
     background-color: #fff;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  }
-
-  .booking-title {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #2c3e50;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
   }
 
   .form-label {
     font-weight: bold;
+    margin-bottom: 5px;
     display: block;
     font-size: 1rem;
-    margin-bottom: 5px;
   }
 
   .form-control {
     border-radius: 10px;
     padding: 12px;
+    width: 100%;
     border: 1px solid #ccc;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   .btn-book {
@@ -44,13 +67,21 @@
   .btn-book:hover {
     background-color: #157347;
   }
+
+  .alert-success,
+  .alert-danger {
+    text-align: center;
+  }
 </style>
 
-<div class="booking-container">
-  <h2 class="booking-title">احجز موعدك الآن</h2>
+<div class="booking-hero">
+  <h2>احجز موعدك الآن</h2>
+  <p>اختر الخدمة والتاريخ المناسب واستمتع بتجربة حلاقة لا تُنسى!</p>
+</div>
 
+<div class="booking-form-container">
   {% if success %}
-  <div class="alert alert-success text-center">تم الحجز بنجاح! ✅</div>
+  <div class="alert alert-success">تم الحجز بنجاح! ✅</div>
   {% endif %} {% if form.errors %}
   <div class="alert alert-danger">
     <ul class="mb-0">
@@ -81,10 +112,26 @@
   </form>
 </div>
 
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ar.js"></script>
+
 <script>
-  // نضيف تنسيق Bootstrap لكل الحقول ديناميكيًا إن لم يُضاف في الفورم نفسه
-  document.querySelectorAll("input, select").forEach((input) => {
-    input.classList.add("form-control");
+  flatpickr("input[name='date']", {
+    minDate: "today",
+    dateFormat: "Y-m-d",
+    locale: "ar",
+  });
+
+  flatpickr("select[name='time']", {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: "H:i",
+    time_24hr: true,
+    minTime: "12:00",
+    maxTime: "22:00",
+    locale: "ar",
   });
 </script>
+
 {% endblock %}

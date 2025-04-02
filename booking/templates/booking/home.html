@@ -1,8 +1,88 @@
-{% extends 'booking/base.html' %}
-{% block content %}
-<div class="text-center">
-  <h1 class="display-4 mb-4">مرحبا بك في محل الحلاقة</h1>
-  <p class="lead">احجز موعدك معنا بسهولة وتمتع بخدمة احترافية في جو مريح وراقي.</p>
-  <a class="btn btn-success mt-3" href="/services/">تصفح خدماتنا</a>
+{% extends "booking/base.html" %} {% block content %}
+
+<style>
+  .hero {
+    background: linear-gradient(to right, #1f1f1f, #343a40);
+    color: white;
+    padding: 80px 30px;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .btn-hero {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-hero:hover {
+    background-color: #e0a800;
+    color: #fff;
+  }
+
+  .features .card {
+    border: none;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .features .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .features .card i {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 15px;
+  }
+</style>
+
+<div class="hero">
+  <h1>مرحباً بك في Barbershop Legend</h1>
+  <p>حلاقة عصرية، خدمات احترافية، وأجواء مريحة!</p>
+  <a href="{% url 'book' %}" class="btn-hero">احجز الآن</a>
 </div>
+
+<div class="container features">
+  <div class="row">
+    <div class="col-md-4 mb-4">
+      <div class="card shadow p-4">
+        <i class="bi bi-scissors"></i>
+        <h5 class="mt-3">خبرة عالية</h5>
+        <p>نقدم لك أفضل خدمات الحلاقة والتجميل بأيدي محترفين.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow p-4">
+        <i class="bi bi-clock-history"></i>
+        <h5 class="mt-3">مواعيد مرنة</h5>
+        <p>احجز موعدك بسهولة في أي وقت يناسبك عبر الموقع.</p>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card shadow p-4">
+        <i class="bi bi-stars"></i>
+        <h5 class="mt-3">جودة مضمونة</h5>
+        <p>نضمن لك تجربة فريدة وجودة عالية في كل زيارة.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}

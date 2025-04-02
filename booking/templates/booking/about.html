@@ -1,47 +1,89 @@
-{% extends "booking/base.html" %} {% load static %} {% block content %}
+{% extends 'booking/base.html' %} {% load static %} {% block content %}
 <style>
+  .about-hero {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("{% static 'images/6ka3s1lp5h.jpg' %}") center/cover no-repeat;
+    color: white;
+    padding: 100px 30px;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 40px;
+  }
+
+  .about-hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .about-hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 20px auto 0;
+  }
+
   .about-section {
     text-align: center;
     padding: 40px 20px;
   }
 
   .about-section h2 {
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
 
-  .image-grid {
+  .about-section p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #555;
+  }
+
+  .about-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    justify-items: center;
+    padding: 40px 20px;
   }
 
-  .image-grid img {
+  .about-gallery img {
     width: 100%;
-    max-width: 280px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
   }
 
-  .image-grid img:hover {
+  .about-gallery img:hover {
     transform: scale(1.05);
   }
 </style>
 
-<div class="about-section">
-  <h2>عن محل الحلاقة</h2>
+<!-- البانر -->
+<div class="about-hero">
+  <h1>Barbershop Legend - منذ 2022</h1>
   <p>
-    نقدم أفضل خدمات الحلاقة والعناية الرجالية بخبرة وجودة عالية، وبيئة مريحة
-    وأنيقة.
+    نقدّم لك تجربة حلاقة مميزة تجمع بين الاحترافية والأناقة، في أجواء مريحة
+    وعصرية.
   </p>
+</div>
 
-  <div class="image-grid mt-4">
-    <img src="{% static 'css/images/1ea8jp0rfl.jpg' %}" alt="Barber 1" />
-    <img src="{% static 'css/images/6ka3s1lp5h.jpg' %}" alt="Barber 2" />
-    <img src="{% static 'css/images/137kbrj864.jpg' %}" alt="Barber 3" />
-    <img src="{% static 'images/37106hqbh7.jpg' %}" alt="Barber 4" />
-  </div>
+<!-- لماذا نحن؟ -->
+<div class="about-section">
+  <h2>لماذا نحن؟</h2>
+  <p>
+    في Barbershop Legend نهتم بأدق التفاصيل لتقديم أفضل الخدمات لعملائنا. فريقنا
+    المحترف يسعى دائمًا لتقديم أفضل مظهر لك باستخدام أحدث التقنيات وأجود
+    المنتجات.
+  </p>
+</div>
+
+<!-- صور المحل -->
+<div class="about-gallery">
+  <img src="{% static 'images/1ea8jp0rfl.jpg' %}" alt="حلاق محترف" />
+  <img src="{% static 'images/137kbrj864.jpg' %}" alt="منتجات العناية" />
+  <img src="{% static 'images/37106hqbh7.jpg' %}" alt="داخل المحل" />
 </div>
 {% endblock %}

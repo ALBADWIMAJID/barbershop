@@ -1,60 +1,110 @@
-{% extends 'booking/base.html' %} {% block content %}
+{% extends 'booking/base.html' %} {% load static %} {% block content %}
 <style>
-  .contact-container {
-    max-width: 700px;
-    margin: auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  .contact-hero {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.7)
+      ),
+      url("{% static 'images/6ka3s1lp5h.jpg' %}") center/cover no-repeat;
+    color: white;
+    padding: 100px 30px;
     text-align: center;
-    direction: rtl;
+    border-radius: 20px;
+    margin-bottom: 40px;
   }
 
-  .contact-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: #198754;
+  .contact-hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .contact-section {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .contact-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
   }
 
   .contact-info {
+    margin-bottom: 30px;
     font-size: 1.1rem;
-    margin-bottom: 20px;
+    line-height: 1.8;
   }
 
-  .contact-info span {
+  .contact-info i {
+    color: #198754;
+    margin-left: 10px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+
+  .contact-form button {
+    width: 100%;
+    background-color: #198754;
+    color: white;
     font-weight: bold;
-    display: inline-block;
-    min-width: 100px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
   }
 
-  .address {
-    font-size: 1.1rem;
-    margin-top: 10px;
-    color: #333;
+  .contact-form button:hover {
+    background-color: #157347;
+  }
+
+  @media (max-width: 768px) {
+    .contact-hero h1 {
+      font-size: 1.8rem;
+    }
   }
 </style>
 
-<div class="contact-container">
-  <h2 class="mb-4">📞 تواصل معنا</h2>
+<!-- العنوان العلوي -->
+<div class="contact-hero">
+  <h1>📞 تواصل معنا</h1>
+  <p>نحن هنا لخدمتك والإجابة على جميع استفساراتك في أي وقت</p>
+</div>
 
+<!-- محتوى التواصل -->
+<div class="contact-section">
+  <h2>معلومات الاتصال</h2>
   <div class="contact-info">
-    <div class="contact-icon">📍</div>
-    <span>العنوان:</span> Пр-т Ленина, 22<br />
-    <div class="address">Пр-т Ленина, 22</div>
-    <!-- العنوان الروسي -->
+    <p>
+      <i class="bi bi-geo-alt"></i> الرياض، شارع الحلاقين، المملكة العربية
+      السعودية
+    </p>
+    <p><i class="bi bi-telephone"></i> 0555555555</p>
+    <p><i class="bi bi-envelope"></i> contact@barbershop.com</p>
   </div>
 
-  <div class="contact-info">
-    <div class="contact-icon">📞</div>
-    <span>الهاتف:</span> 0555555555<br />
-    <div class="address">+7 (988) 498-05-01</div>
-    <!-- رقم روسي -->
-  </div>
-
-  <div class="contact-info">
-    <div class="contact-icon">✉️</div>
-    <span>البريد الإلكتروني:</span> contact@barbershop.com
-  </div>
+  <form class="contact-form" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" placeholder="الاسم الكامل" required />
+    <input type="email" name="email" placeholder="البريد الإلكتروني" required />
+    <textarea
+      name="message"
+      rows="5"
+      placeholder="اكتب رسالتك هنا..."
+      required
+    ></textarea>
+    <button type="submit">إرسال الرسالة</button>
+  </form>
 </div>
 {% endblock %}

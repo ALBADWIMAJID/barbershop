@@ -1,47 +1,82 @@
 {% extends "booking/base.html" %} {% block content %}
-<h2 class="mb-4 text-center">لوحة التحكم - المشرف</h2>
 
-{% if messages %} {% for message in messages %}
-<div class="alert alert-{{ message.tags }} text-center" role="alert">
-  {{ message }}
+<style>
+  .admin-dashboard {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+  }
+
+  .admin-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: #343a40;
+  }
+
+  .table th {
+    background-color: #343a40;
+    color: #fff;
+  }
+
+  .table td,
+  .table th {
+    vertical-align: middle;
+  }
+
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+</style>
+
+<div class="admin-dashboard">
+  <h2 class="admin-title">لوحة تحكم المشرف</h2>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered text-center align-middle">
+      <thead>
+        <tr>
+          <th>المستخدم</th>
+          <th>الخدمة</th>
+          <th>التاريخ</th>
+          <th>الوقت</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.user.username }}</td>
+          <td>{{ booking.service }}</td>
+          <td>{{ booking.date }}</td>
+          <td>{{ booking.time }}</td>
+          <td>
+            <a
+              href="{% url 'edit_booking' booking.id %}"
+              class="btn btn-sm btn-outline-primary"
+            >
+              <i class="bi bi-pencil-square"></i> تعديل
+            </a>
+            <a
+              href="{% url 'delete_booking' booking.id %}"
+              class="btn btn-sm btn-outline-danger"
+              onclick="return confirm('هل أنت متأكد من الحذف؟');"
+            >
+              <i class="bi bi-trash3"></i> حذف
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5">لا توجد حجوزات حاليًا.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 </div>
-{% endfor %} {% endif %} {% if bookings %}
-<div class="table-responsive">
-  <table class="table table-hover table-bordered align-middle text-center">
-    <thead class="table-dark">
-      <tr>
-        <th>المستخدم</th>
-        <th>الخدمة</th>
-        <th>التاريخ</th>
-        <th>الوقت</th>
-        <th>إجراءات</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for booking in bookings %}
-      <tr>
-        <td>{{ booking.user.username }}</td>
-        <td>{{ booking.service }}</td>
-        <td>{{ booking.date }}</td>
-        <td>{{ booking.time }}</td>
-        <td>
-          <a
-            href="{% url 'edit_booking' booking.id %}"
-            class="btn btn-sm btn-outline-primary"
-            >تعديل</a
-          >
-          <a
-            href="{% url 'delete_booking' booking.id %}"
-            class="btn btn-sm btn-outline-danger"
-            onclick="return confirm('هل أنت متأكد من الحذف؟');"
-            >حذف</a
-          >
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% else %}
-<div class="alert alert-info text-center">لا توجد حجوزات حالياً.</div>
-{% endif %} {% endblock %}
+
+{% endblock %}
