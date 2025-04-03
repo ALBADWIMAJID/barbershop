@@ -1,107 +1,297 @@
-{% extends 'booking/base.html' %} {% block content %}
+{% extends 'booking/base.html' %} {% load static %} {% block content %}
+
 <style>
-  .service-card {
-    border: 1px solid #dee2e6;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+  .services-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+
+  .services-title {
     text-align: center;
-    height: 100%;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: #198754;
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease-in-out;
   }
 
   .service-card:hover {
     transform: translateY(-5px);
   }
 
-  .service-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
-    color: #198754;
+  .service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
 
-  .service-title {
-    font-size: 1.2rem;
+  .service-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .service-name {
+    font-size: 1.25rem;
     font-weight: bold;
     color: #343a40;
+    margin-bottom: 5px;
   }
 
-  .service-price {
-    font-size: 1.1rem;
-    color: #555;
+  .service-type {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
+  }
+
+  .service-details {
+    display: flex;
+    justify-content: space-between;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
-  .btn-book {
+  .book-btn {
     background-color: #198754;
-    color: white;
+    color: #fff;
     font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
     text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
   }
 
-  .btn-book:hover {
+  .book-btn:hover {
     background-color: #157347;
   }
 </style>
 
-<h2 class="mb-5 text-center">💈 خدماتنا المميزة</h2>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card service-card p-4">
-      <div class="service-icon">💈</div>
-      <div class="service-title">حلاقة كلاسيكية</div>
-      <div class="service-price">50 ريال</div>
-      <a href="/book/" class="btn-book">احجز الآن</a>
+<div class="services-container">
+  <h2 class="services-title">خدماتنا</h2>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- مثال 1 -->
+    <!-- بطاقة: تشكيل اللحية -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/4g4kkhlkak.jpg"
+          alt="تشكيل اللحية"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">تشكيل اللحية</div>
+            <div class="service-type">لحية</div>
+            <div class="service-details">
+              <span>400 RUB</span>
+              <span>15 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="col">
-    <div class="card service-card p-4">
-      <div class="service-icon">🧖‍♂️</div>
-      <div class="service-title">تنظيف بشرة</div>
-      <div class="service-price">70 ريال</div>
-      <a href="/book/" class="btn-book">احجز الآن</a>
+    <!-- بطاقة: حلاقة رجالية -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/6ao8bg3fcg.jpg"
+          alt="حلاقة رجالية"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">حلاقة رجالية</div>
+            <div class="service-type">حلاقة</div>
+            <div class="service-details">
+              <span>4000 RUB</span>
+              <span>120 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="col">
-    <div class="card service-card p-4">
-      <div class="service-icon">🎨</div>
-      <div class="service-title">صبغة شعر</div>
-      <div class="service-price">100 ريال</div>
-      <a href="/book/" class="btn-book">احجز الآن</a>
+    <!-- بطاقة: خدمة شاملة من باربرشوب ليجند -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/5t5pnl20v7.jpg"
+          alt="خدمة شاملة من باربرشوب ليجند"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">خدمة شاملة من باربرشوب ليجند</div>
+            <div class="service-type">خدمة شاملة</div>
+            <div class="service-details">
+              <span>1500 RUB</span>
+              <span>60 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="col">
-    <div class="card service-card p-4">
-      <div class="service-icon">✂️</div>
-      <div class="service-title">حلاقة ذقن + تسريح</div>
-      <div class="service-price">60 ريال</div>
-      <a href="/book/" class="btn-book">احجز الآن</a>
+    <!-- بطاقة: إزالة الشعر بالحلاوة -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/7j4q5vp7n2.jpg"
+          alt="إزالة الشعر بالحلاوة"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">إزالة الشعر بالحلاوة</div>
+            <div class="service-type">إزالة الشعر</div>
+            <div class="service-details">
+              <span>300 RUB</span>
+              <span>15 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="col">
-    <div class="card service-card p-4">
-      <div class="service-icon">💆‍♂️</div>
-      <div class="service-title">مساج الرأس</div>
-      <div class="service-price">40 ريال</div>
-      <a href="/book/" class="btn-book">احجز الآن</a>
+    <!-- بطاقة: استشارة الحلاقة الشخصية -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/52bjbfna55.jpg"
+          alt="استشارة الحلاقة الشخصية"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">استشارة الحلاقة الشخصية</div>
+            <div class="service-type">استشارة</div>
+            <div class="service-details">
+              <span>1000 RUB</span>
+              <span>60 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="col">
-    <div class="card service-card p-4">
-      <div class="service-icon">🪒</div>
-      <div class="service-title">حلاقة أطفال</div>
-      <div class="service-price">35 ريال</div>
-      <a href="/book/" class="btn-book">احجز الآن</a>
+    <!-- بطاقة: صبغ الشعر -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/2fk317dppg.jpg"
+          alt="صبغ الشعر"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">صبغ الشعر</div>
+            <div class="service-type">تلوين</div>
+            <div class="service-details">
+              <span>2000 RUB</span>
+              <span>150 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- بطاقة: تلوين الشعر/اللحية -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/653ak6r0av.jpg"
+          alt="تلوين الشعر/اللحية"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">تلوين الشعر/اللحية</div>
+            <div class="service-type">تلوين</div>
+            <div class="service-details">
+              <span>699 RUB</span>
+              <span>30 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- بطاقة: حلاقة الأطفال -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/5v4tpkjtok.jpg"
+          alt="حلاقة الأطفال"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">حلاقة الأطفال</div>
+            <div class="service-type">حلاقة</div>
+            <div class="service-details">
+              <span>800 RUB</span>
+              <span>45 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- بطاقة: حلاقة الرجال -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/28j9mgs9n6.jpg"
+          alt="حلاقة الرجال"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">حلاقة الرجال</div>
+            <div class="service-type">حلاقة</div>
+            <div class="service-details">
+              <span>700 RUB</span>
+              <span>45 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- بطاقة: الحلاقة للأطفال -->
+    <div class="col">
+      <div class="service-card">
+        <img
+          src="https://f1.dikidi.net/c10/v9766/56chal808q.jpg"
+          alt="حلاقة الأطفال"
+        />
+        <div class="service-info">
+          <div>
+            <div class="service-name">حلاقة الأطفال</div>
+            <div class="service-type">حلاقة</div>
+            <div class="service-details">
+              <span>999 RUB</span>
+              <span>60 دقيقة</span>
+            </div>
+          </div>
+          <a href="/book/" class="book-btn">احجز الآن</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 {% endblock %}

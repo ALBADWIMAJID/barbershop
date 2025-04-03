@@ -20,9 +20,9 @@
   }
 
   .contact-section {
-    max-width: 700px;
+    max-width: 800px;
     margin: auto;
-    padding: 20px;
+    padding: 30px;
     background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
@@ -32,12 +32,15 @@
     text-align: center;
     margin-bottom: 25px;
     font-weight: bold;
+    color: #198754;
   }
 
   .contact-info {
     margin-bottom: 30px;
     font-size: 1.1rem;
     line-height: 1.8;
+    direction: rtl;
+    text-align: right;
   }
 
   .contact-info i {
@@ -52,6 +55,7 @@
     margin-bottom: 15px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    font-family: "Cairo", sans-serif;
   }
 
   .contact-form button {
@@ -69,42 +73,86 @@
     background-color: #157347;
   }
 
-  @media (max-width: 768px) {
-    .contact-hero h1 {
-      font-size: 1.8rem;
-    }
+  #map_pp_2875 {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-top: 30px;
   }
 </style>
 
-<!-- العنوان العلوي -->
 <div class="contact-hero">
   <h1>📞 تواصل معنا</h1>
   <p>نحن هنا لخدمتك والإجابة على جميع استفساراتك في أي وقت</p>
 </div>
 
-<!-- محتوى التواصل -->
 <div class="contact-section">
   <h2>معلومات الاتصال</h2>
   <div class="contact-info">
+    <p><i class="bi bi-geo-alt-fill"></i> Пр-т Ленина, 22</p>
     <p>
-      <i class="bi bi-geo-alt"></i> الرياض، شارع الحلاقين، المملكة العربية
-      السعودية
+      <i class="bi bi-telephone-fill"></i>
+      <a href="tel:+79884980501">+7 (988) 498-05-01</a>
     </p>
-    <p><i class="bi bi-telephone"></i> 0555555555</p>
-    <p><i class="bi bi-envelope"></i> contact@barbershop.com</p>
+    <p><i class="bi bi-envelope-fill"></i> contact@barbershop.com</p>
   </div>
 
-  <form class="contact-form" method="post">
-    {% csrf_token %}
-    <input type="text" name="name" placeholder="الاسم الكامل" required />
-    <input type="email" name="email" placeholder="البريد الإلكتروني" required />
-    <textarea
-      name="message"
-      rows="5"
-      placeholder="اكتب رسالتك هنا..."
-      required
-    ></textarea>
-    <button type="submit">إرسال الرسالة</button>
-  </form>
+  <h4 class="text-center mt-5 mb-3">📍 موقعنا على الخريطة</h4>
+  <div id="map_pp_2875"></div>
 </div>
+
+<!-- تضمين Yandex Map -->
+<script
+  src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"
+  type="text/javascript"
+></script>
+<script>
+  function load_map() {
+    wait_for_map_pp_2875();
+  }
+
+  function wait_for_map_pp_2875() {
+    if (typeof ymaps === "object") {
+      try {
+        on_ready_map_pp_2875();
+      } catch (e) {}
+    } else {
+      setTimeout(wait_for_map_pp_2875, 1000);
+    }
+  }
+
+  function on_ready_map_pp_2875() {
+    ymaps.ready(function () {
+      var myMap = new ymaps.Map("map_pp_2875", {
+        center: [48.711794, 44.52541],
+        zoom: 16,
+        controls: ["zoomControl", "fullscreenControl"],
+        behaviors: [
+          "drag",
+          "dblClickZoom",
+          "multiTouch",
+          "rightMouseButtonMagnifier",
+        ],
+      });
+
+      var myPlacemark2 = new ymaps.Placemark(
+        [48.711794, 44.52541],
+        {
+          balloonContentBody: "",
+        },
+        {
+          iconLayout: "default#image",
+          iconImageHref: "/static/images/ymap_placemark_pin.png",
+          iconImageSize: [24, 32],
+          iconImageOffset: [-10, -28],
+        }
+      );
+
+      myMap.geoObjects.add(myPlacemark2);
+    });
+  }
+
+  load_map();
+</script>
 {% endblock %}

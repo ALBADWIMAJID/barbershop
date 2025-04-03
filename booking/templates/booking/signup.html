@@ -83,10 +83,7 @@
         >{{ field.label }}</label
       >
       {{ field }} {% if field.name == "username" %}
-      <div class="form-text">
-        اختر اسم مستخدم يتكوّن من حروف أو أرقام ويمكن أن يحتوي على الرموز: @ / .
-        + - _
-      </div>
+      <div class="form-text">اختر اسم مستخدم يتكوّن من حروف أو أرقام</div>
       {% elif field.help_text %}
       <div class="form-text">{{ field.help_text }}</div>
       {% endif %} {% for error in field.errors %}
