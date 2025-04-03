@@ -1,34 +1,61 @@
 {% extends "booking/base.html" %} {% block content %}
 
+<!-- Bootstrap icons -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+  rel="stylesheet"
+/>
+
 <style>
   .hero {
     background: linear-gradient(to right, #1f1f1f, #343a40);
     color: white;
-    padding: 80px 30px;
+    padding: 100px 30px;
     text-align: center;
     border-radius: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    background-image: url("https://f1.dikidi.net/c4/v3497/37106hqbh7.jpg?size=m");
+    opacity: 0.08;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .hero * {
+    position: relative;
+    z-index: 1;
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   .hero p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
   }
 
   .btn-hero {
     background-color: #ffc107;
     color: #000;
     font-weight: bold;
-    padding: 12px 25px;
-    border-radius: 8px;
+    padding: 12px 30px;
+    border-radius: 10px;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: 0.3s;
   }
 
   .btn-hero:hover {
@@ -38,8 +65,10 @@
 
   .features .card {
     border: none;
+    border-radius: 15px;
     text-align: center;
     transition: transform 0.3s ease;
+    background-color: #f8f9fa;
   }
 
   .features .card:hover {
@@ -47,36 +76,38 @@
   }
 
   .features .card i {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #0d6efd;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 </style>
 
+<!-- البانر الرئيسي -->
 <div class="hero">
   <h1>مرحباً بك في Barbershop Legend</h1>
   <p>حلاقة عصرية، خدمات احترافية، وأجواء مريحة!</p>
   <a href="{% url 'book' %}" class="btn-hero">احجز الآن</a>
 </div>
 
+<!-- مميزاتنا -->
 <div class="container features">
   <div class="row">
     <div class="col-md-4 mb-4">
-      <div class="card shadow p-4">
+      <div class="card shadow p-4 h-100">
         <i class="bi bi-scissors"></i>
         <h5 class="mt-3">خبرة عالية</h5>
         <p>نقدم لك أفضل خدمات الحلاقة والتجميل بأيدي محترفين.</p>
       </div>
     </div>
     <div class="col-md-4 mb-4">
-      <div class="card shadow p-4">
+      <div class="card shadow p-4 h-100">
         <i class="bi bi-clock-history"></i>
         <h5 class="mt-3">مواعيد مرنة</h5>
         <p>احجز موعدك بسهولة في أي وقت يناسبك عبر الموقع.</p>
       </div>
     </div>
     <div class="col-md-4 mb-4">
-      <div class="card shadow p-4">
+      <div class="card shadow p-4 h-100">
         <i class="bi bi-stars"></i>
         <h5 class="mt-3">جودة مضمونة</h5>
         <p>نضمن لك تجربة فريدة وجودة عالية في كل زيارة.</p>
@@ -84,5 +115,67 @@
     </div>
   </div>
 </div>
+<!-- Footer -->
+<footer class="bg-dark text-white mt-5 pt-4 pb-3">
+  <div class="container">
+    <div class="row">
+      <!-- معلومات الموقع -->
+      <div class="col-md-4 mb-4">
+        <h5>Barbershop Legend 💈</h5>
+        <p>موقع حلاقة احترافي يقدم خدمات عصرية وأسلوب فريد.</p>
+        <p>
+          <i class="bi bi-whatsapp"></i>
+          <a
+            href="https://wa.me/966500000000"
+            class="text-white"
+            target="_blank"
+            >whatsapp
+          </a>
+        </p>
+        <p>
+          <i class="bi bi-instagram"></i>
+          <a
+            href="https://instagram.com/barbershop_legend"
+            class="text-white"
+            target="_blank"
+            >@barbershop_legend</a
+          >
+        </p>
+      </div>
+
+      <!-- روابط سريعة -->
+      <div class="col-md-4 mb-4">
+        <h5>روابط سريعة</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'home' %}" class="text-white">الصفحة الرئيسية</a>
+          </li>
+          <li>
+            <a href="{% url 'contact' %}" class="text-white">تواصل معنا</a>
+          </li>
+          <li><a href="{% url 'book' %}" class="text-white">الحجز الآن</a></li>
+        </ul>
+      </div>
+
+      <!-- معلومات المطور -->
+      <div class="col-md-4 mb-4">
+        <h5>المطور</h5>
+        <p>تم تطوير الموقع بواسطة <strong>MAJID ALBADWI </strong>.</p>
+        <p>
+          <i class="bi bi-envelope"></i> albadwimajid755@gmail.com<br />
+          <i class="bi bi-github"></i>
+          <a href="https://github.com/ALBADWIMAJID" class="text-white"
+            >GitHub</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <hr class="border-gray" />
+    <p class="text-center mb-0">
+      &copy; 2025 Barbershop Legend. جميع الحقوق محفوظة.
+    </p>
+  </div>
+</footer>
 
 {% endblock %}

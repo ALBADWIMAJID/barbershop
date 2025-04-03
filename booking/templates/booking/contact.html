@@ -6,7 +6,7 @@
         rgba(0, 0, 0, 0.6),
         rgba(0, 0, 0, 0.7)
       ),
-      url("{% static 'images/6ka3s1lp5h.jpg' %}") center/cover no-repeat;
+      url("https://f1.dikidi.net/c4/v3497/37106hqbh7.jpg?size=m");
     color: white;
     padding: 100px 30px;
     text-align: center;
@@ -155,4 +155,48 @@
 
   load_map();
 </script>
+<!-- Footer -->
+<footer class="bg-dark text-white mt-5 pt-4 pb-3">
+  <div class="container">
+    <div class="row">
+      <!-- معلومات الموقع -->
+      <div class="col-md-4 mb-4">
+        <h5>Barbershop Legend 💈</h5>
+        <p>موقع حلاقة احترافي يقدم خدمات عصرية وأسلوب فريد.</p>
+      </div>
+
+      <!-- روابط سريعة -->
+      <div class="col-md-4 mb-4">
+        <h5>روابط سريعة</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'home' %}" class="text-white">الصفحة الرئيسية</a>
+          </li>
+          <li>
+            <a href="{% url 'contact' %}" class="text-white">تواصل معنا</a>
+          </li>
+          <li><a href="{% url 'book' %}" class="text-white">الحجز الآن</a></li>
+        </ul>
+      </div>
+
+      <!-- معلومات المطور -->
+      <div class="col-md-4 mb-4">
+        <h5>المطور</h5>
+        <p>تم تطوير الموقع بواسطة <strong>MAJID ALBADWI </strong>.</p>
+        <p>
+          <i class="bi bi-envelope"></i> albadwimajid755@gmail.com<br />
+          <i class="bi bi-github"></i>
+          <a href="https://github.com/ALBADWIMAJID" class="text-white"
+            >GitHub</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <hr class="border-gray" />
+    <p class="text-center mb-0">
+      &copy; 2025 Barbershop Legend. جميع الحقوق محفوظة.
+    </p>
+  </div>
+</footer>
 {% endblock %}

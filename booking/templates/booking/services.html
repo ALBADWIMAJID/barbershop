@@ -293,5 +293,48 @@
     </div>
   </div>
 </div>
+<!-- Footer -->
+<footer class="bg-dark text-white mt-5 pt-4 pb-3">
+  <div class="container">
+    <div class="row">
+      <!-- معلومات الموقع -->
+      <div class="col-md-4 mb-4">
+        <h5>Barbershop Legend 💈</h5>
+        <p>موقع حلاقة احترافي يقدم خدمات عصرية وأسلوب فريد.</p>
+      </div>
 
+      <!-- روابط سريعة -->
+      <div class="col-md-4 mb-4">
+        <h5>روابط سريعة</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'home' %}" class="text-white">الصفحة الرئيسية</a>
+          </li>
+          <li>
+            <a href="{% url 'contact' %}" class="text-white">تواصل معنا</a>
+          </li>
+          <li><a href="{% url 'book' %}" class="text-white">الحجز الآن</a></li>
+        </ul>
+      </div>
+
+      <!-- معلومات المطور -->
+      <div class="col-md-4 mb-4">
+        <h5>المطور</h5>
+        <p>تم تطوير الموقع بواسطة <strong>MAJID ALBADWI </strong>.</p>
+        <p>
+          <i class="bi bi-envelope"></i> albadwimajid755@gmail.com<br />
+          <i class="bi bi-github"></i>
+          <a href="https://github.com/ALBADWIMAJID" class="text-white"
+            >GitHub</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <hr class="border-gray" />
+    <p class="text-center mb-0">
+      &copy; 2025 Barbershop Legend. جميع الحقوق محفوظة.
+    </p>
+  </div>
+</footer>
 {% endblock %}
